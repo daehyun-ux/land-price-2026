@@ -1068,6 +1068,7 @@ footer p{margin:0}
       el.querySelectorAll(".countup").forEach(function(c){c._run=(c._run||0)+1;c.textContent=cfmt(c,0)});
       el.querySelectorAll(".mini17 i").forEach(function(q){q.style.transition="none";q.style.transform="scaleY(.04)";q.style.opacity="0"});
       el.querySelectorAll("g[id$='regions'] .rg").forEach(function(q){q.style.transition="none";q.style.opacity="0"});
+      el.querySelectorAll("#shan").forEach(function(q){q.style.transition="none";q.style.opacity="0"});
     }
     /* chart parts animate per block, only once that block is actually on screen (top above ~72% of the viewport) */
     function cfmt(c,v){var dec=+(c.dataset.dec||0),a=Math.abs(v),t=dec?a.toFixed(dec):Math.round(a).toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");return (v<0&&+t!==0?"−":"")+t}
@@ -1090,6 +1091,7 @@ footer p{margin:0}
         setTimeout(function(){if(!ok())return;requestAnimationFrame(f)},150)})});
       el.querySelectorAll(".mini17 i").forEach(function(q){add(q,"m",function(i){setTimeout(function(){if(!ok())return;q.style.transition="transform .5s cubic-bezier(.2,.8,.2,1.25),opacity .3s ease";q.style.transform="";q.style.opacity="";setTimeout(function(){if(ok())q.style.transition=""},700)},120+i*55)})});
       el.querySelectorAll("g[id$='regions'] .rg").forEach(function(q){add(q,"r",function(i){setTimeout(function(){if(!ok())return;q.style.transition="opacity .6s ease";q.style.opacity="";setTimeout(function(){if(ok())q.style.transition=""},800)},100+i*35)})});
+      el.querySelectorAll("#shan").forEach(function(rv){var nreg=rv.ownerSVGElement.querySelectorAll("g[id$='regions'] .rg").length;add(rv,"w",function(){setTimeout(function(){if(!ok())return;rv.style.transition="opacity 1s ease";rv.style.opacity="";setTimeout(function(){if(ok())rv.style.transition=""},1100)},100+nreg*35+450)})});
       blocks.forEach(function(bk){bk._run={owner:el,gen:gen,fns:bk._fns};var r=bk.getBoundingClientRect();if(r.top<innerHeight*.72&&r.bottom>innerHeight*.1)runBlock(bk);else bio.observe(bk)});
     }
     fxs.forEach(function(el){if(el.getBoundingClientRect().top>vh)prep(el);else el._shown=true;});
